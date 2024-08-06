@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resolvedor de Eq 2°</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    
+    <fieldset class="big-box">
+        <h1 class="tema">
+            Vamos resolver Equação do 2°
+        </h1>
+        <div class="div-boxs">
+            <label for="A" class="text">Digite o valor de <strong>A</strong></label>
+            <input type="number" value="valor1" name="A" id="box1">
+
+            <label for="B">Digite o valor de <strong>B</strong></label>
+            <input type="number" value="valor2" name="B" id="box2">
+
+            <label for="C">Digite o valor de <strong>C</strong></label>
+            <input type="number" value="valor3" name="C" id="box3">
+
+        </div>
+        <div>
+            <input type="button" value="Resolve" id="btn">
+        </div>
+    </fieldset>
+    <div id="resp" class="hidden">
+
+    </div>
+    <script>
+
+        /* Declarações de variáveis e criação da funtion através do "addEventListener". Ele registra um espera por um evento em um único alvo, neste caso, esperando o evento click no alvo #btn para executar a function (resolver).*/
+
+        var btn = document.querySelector('#btn')
+
+        btn.addEventListener('click', function(resolver){
+
+            let A = Number(box1.value)
+            let B = Number(box2.value)
+            let C = Number(box3.value)
+            let D = ''
+            let X1 = ''
+            let X2 = ''
+            let res = document.querySelector('#resp')
+
+            /*Condição de existencia*/
+            if (A == '') {
+                window.alert('[ERRO] Sua equação não existe')
+
+                /*Calculo do Delta*/
+            } else {
+                D = B ** 2 -4 * A * C
+
+                /*Condicionais de resolução e a resolução*/
+            } if (D < 0) {
+                res.innerHTML = `<strong>O valor de delta é ${D.toFixed(2)}.<br> Portanto, Não possuí raízes.</strong>`
+                res.style.textAlign = 'center'
+                } else if (D == 0) {
+                    X1 = (-B + Math.sqrt(D)) / (2 * A)
+                    res.innerHTML = `O valor de Delta é ${D}.<br>
+                    Portanto, há somente uma raíz e o valor é ${X1.toFixed(2)}`
+                        } else if (D > 0) {
+                            X1 = (-B + Math.sqrt(D)) / (2 * A)
+                            X2 = (-(-B) + Math.sqrt(D)) / (2 * A)
+                            res.innerHTML = `O valor de Delta é ${D.toFixed(2)}.<br>
+                            Portanto, há duas raízes.<br>
+                            Raiz 1 vale ${X1.toFixed(2)}<br>
+                            Raiz 2 vale ${X2.toFixed(2)}`
+                        }
+            })
+    </script>
+</body>
+</html>
